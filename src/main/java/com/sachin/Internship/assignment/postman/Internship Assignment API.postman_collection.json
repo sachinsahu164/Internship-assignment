@@ -1,0 +1,439 @@
+{
+  "info": {
+    "_postman_id": "ec66da20-9fdf-4b72-b974-250a13142dd7",
+    "name": "Internship Assignment API",
+    "description": "This collection contains all APIs for the Internship Assignment project.\n\nBase URL: [http://localhost:8080](http://localhost:8080)\n\nFlow:\n\n1. Create Post\n    \n2. Add Comment\n    \n3. Like Post\n    \n4. Get Score\n    \n5. Trigger Bot\n    \n\nNote:\n\n- Make sure backend server is running\n    \n- Update Post ID if needed",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "48831694",
+    "_collection_link": "https://go.postman.co/collection/48831694-ec66da20-9fdf-4b72-b974-250a13142dd7?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Posts",
+      "item": [
+        {
+          "name": "Create Post",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Test Post\",\n  \"content\": \"Hello world\",\n  \"authorId\": 1\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/posts",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "posts"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Create Post",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"Test Post\",\n  \"content\": \"Hello world\",\n  \"authorId\": 6\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/posts",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "posts"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "88"
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 23 Apr 2026 17:22:06 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"authorId\": 6,\n    \"content\": \"Hello world\",\n    \"createdAt\": \"2026-04-23T22:52:06.7393742\",\n    \"id\": 10\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get All Posts",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/posts",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "posts"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Comments",
+      "item": [
+        {
+          "name": "Add Comment",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"authorId\": 2,\n  \"content\": \"Nice post!\",\n  \"depthLevel\": 1\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/posts/1/comments",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "posts",
+                "1",
+                "comments"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Add Comment",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"authorId\": 6,\n  \"content\": \"Nice post!\",\n  \"depthLevel\": 1\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/posts/1/comments",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "posts",
+                    "1",
+                    "comments"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "113"
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 23 Apr 2026 17:23:11 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"authorId\": 6,\n    \"content\": \"Nice post!\",\n    \"createdAt\": \"2026-04-23T22:53:11.1258337\",\n    \"depthLevel\": 1,\n    \"id\": 11,\n    \"postId\": 1\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Engagement",
+      "item": [
+        {
+          "name": "Like Post",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/posts/1/like",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "posts",
+                "1",
+                "like"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Like Post",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/posts/1/like",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "posts",
+                    "1",
+                    "like"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain;charset=UTF-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "5"
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 23 Apr 2026 17:23:27 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "Liked"
+            }
+          ]
+        },
+        {
+          "name": "Get Post Score",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/posts/1/score",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "posts",
+                "1",
+                "score"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get Post Score",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/posts/1/score",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "posts",
+                    "1",
+                    "score"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain;charset=UTF-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "3"
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 23 Apr 2026 17:23:42 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "683"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Bot",
+      "item": [
+        {
+          "name": "Trigger Bot Action",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/posts/1/bot",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "posts",
+                "1",
+                "bot"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Trigger Bot Action",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/posts/1/bot",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "posts",
+                    "1",
+                    "bot"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain;charset=UTF-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "15"
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 23 Apr 2026 17:23:55 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "Bot Replied ✅"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

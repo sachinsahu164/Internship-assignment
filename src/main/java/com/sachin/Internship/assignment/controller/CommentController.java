@@ -14,7 +14,6 @@ public class CommentController {
 
     // ✅ Constructor Injection
     public CommentController(CommentService commentService,
-                             ViralityService viralityService) {
         this.commentService = commentService;
         this.viralityService = viralityService;
     }
