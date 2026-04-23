@@ -1,61 +1,55 @@
-Internship assignment 
-This is a simple REST API where you can create posts, like them, comment on them, and check how “viral” they are based on interactions.
-🌐 Base URL
-http://localhost:8080/api
-🧪 How it works (quick idea)
-Likes add +20 points
-Comments add +50 points
-You can track total “virality score” of each post
-📝 1. Create a Post
-Create a new post for a user.
-Request  POST http://localhost:8080/api/posts
-Body
-{
-  "authorId": 1,
-  "content": "My first viral post"
-}
-What you get back
-A post object
-Most importantly: the post id (you’ll use this everywhere next)
-❤️ 2. Like a Post
-Like a post and boost its score.
-Request 
-POST /posts/{postId}/like
-Example:
-POSt /posts/1/like
-What happens
-Every like adds +20 points
-You can hit this multiple times (yes, spam likes work 😄)
-💬 3. Add a Comment
-Drop a comment on a post.
-Request 
-POST /posts/{postId}/comments
-Body
-{
-  "authorId": 2,
-  "content": "Nice post!",
-  "depthLevel": 1
-}
-What happens
-Each comment adds +50 points
-So comments are more powerful than likes
-📊 4. Check Virality Score
-See how viral your post is.
-Request
-GET /posts/{postId}/score
-Example:
-GET /posts/1/score
-Response
-{
-  "postId": 1,
-  "score": 90
-}
-⚡ Scoring Summary
-👍 Like → +20
-💬 Comment → +50
-Simple enough.
-🔁 Example Flow
-Create a post → get id = 1
-Like it 2 times → +40
-Add 1 comment → +50
-Final score → 90
+🚀 Backend Engineering Assignment – Core API & Guardrails
+📌 Overview
+
+This project is a Spring Boot-based backend system designed to handle high-concurrency interactions using Redis as a real-time guardrail system.
+
+It includes:
+
+Post & Comment APIs
+Redis-based Virality Engine
+Atomic Locks for concurrency control
+Notification batching system
+🧱 Tech Stack
+Java 17
+Spring Boot 3
+PostgreSQL
+Redis
+Docker
+⚡ Features
+1. Virality Engine (Redis)
+Bot Reply → +1
+Like → +20
+Comment → +50
+Implemented using Redis INCR for atomic updates
+2. Atomic Locks (Concurrency Control)
+Horizontal Cap:
+Max 100 bot replies per post
+→ Redis INCR used for atomic counting
+Cooldown Cap:
+A bot cannot interact with the same user within 10 minutes
+→ Redis TTL-based key
+Vertical Cap:
+Comment depth limited to 20 levels
+3. Notification Engine (Smart Batching)
+Immediate notification if no recent activity
+Otherwise stored in Redis list
+Cron job summarizes notifications every 5 minutes
+🧠 Thread Safety Approach
+
+Redis atomic operations (INCR, SET with TTL) were used to ensure thread-safe operations under high concurrency.
+
+This prevents race conditions when multiple requests are processed simultaneously.
+
+🧪 Testing Strategy
+Tested using Postman
+Simulated multiple bot requests
+Verified Redis keys using CLI
+Ensured correct blocking after limits
+▶️ How to Run
+# Run Redis
+docker run -d -p 6379:6379 redis
+
+# Run PostgreSQL
+docker run -d -p 5432:5432 -e POSTGRES_PASSWORD=1234 postgres
+
+Then run Spring Boot application.
