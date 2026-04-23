@@ -1,10 +1,8 @@
 🚀 Backend Engineering Assignment – Core API & Guardrails
 📌 Overview
-
 This project is a Spring Boot-based backend system designed to handle high-concurrency interactions using Redis as a real-time guardrail system.
-
 It includes:
-
+ NOTE :-Update database credentials in application.properties before running
 Post & Comment APIs
 Redis-based Virality Engine
 Atomic Locks for concurrency control
