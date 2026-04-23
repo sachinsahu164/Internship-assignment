@@ -10,31 +10,41 @@ import java.util.Set;
 @Component
 public class NotificationScheduler {
 
-    private final StringRedisTemplate redis;
+    private final StringRedisTemplate redisTemplate;
 
-    public NotificationScheduler(StringRedisTemplate redis) {
-        this.redis = redis;
+    public NotificationScheduler(StringRedisTemplate redisTemplate) {
+        this.redisTemplate = redisTemplate;
     }
 
-    // every 5 min
+    // Runs every 5 minutes to process pending notifications
     @Scheduled(fixedRate = 300000)
     public void processNotifications() {
 
-        Set<String> keys = redis.keys("user:*:pending_notifs");
+        // Fetch all users who have pending notifications
+        Set<String> keys = redisTemplate.keys("user:*:pending_notifs");
 
-        if (keys == null) return;
+        if (keys == null || keys.isEmpty()) {
+            return;
+        }
 
         for (String key : keys) {
 
-            List<String> messages = redis.opsForList().range(key, 0, -1);
+            // Get all messages for this user
+            List<String> messages = redisTemplate.opsForList().range(key, 0, -1);
 
-            if (messages == null || messages.isEmpty()) continue;
+            if (messages == null || messages.isEmpty()) {
+                continue;
+            }
 
-            int count = messages.size();
+            int totalNotifications = messages.size();
 
-            System.out.println("📢 Summarized Notification: " + count + " new interactions");
+            // Simulating summarized push notification
+            System.out.println(
+                    "📢 Summarized Notification: " + totalNotifications + " new interactions"
+            );
 
-            redis.delete(key);
+            // Clear processed notifications
+            redisTemplate.delete(key);
         }
     }
 }
