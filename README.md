@@ -53,3 +53,20 @@ docker run -d -p 6379:6379 redis
 docker run -d -p 5432:5432 -e POSTGRES_PASSWORD=1234 postgres
 
 Then run Spring Boot application.
+
+## 📬 API Testing (Postman)
+
+You can test all APIs using the Postman collection provided below.
+
+### 🔹 Steps:
+1. Download the collection from `/postman` folder
+2. Import it into Postman
+3. Start the backend server
+4. Use the APIs in sequence
+
+### 📁 Files:
+- `postman/Internship-API.postman_collection.json`
+- `postman/Internship-Env.postman_environment.json` (optional)
+
+### ⚙️ Base URL:
+http://localhost:8080
