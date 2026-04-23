@@ -13,8 +13,13 @@ public class CommentService {
     @Autowired
     private CommentRepository commentRepository;
 
-    public Comment addComment(Comment comment) {
-        comment.setCreatedAt(LocalDateTime.now());
-        return commentRepository.save(comment);
+   public Comment addComment(Comment comment) {
+    if (comment.getDepthLevel() > 20) {
+        throw new RuntimeException("Depth limit exceeded (max 20)");
     }
+
+    comment.setCreatedAt(LocalDateTime.now());
+
+    return commentRepository.save(comment);
+}
 }
